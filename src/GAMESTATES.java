@@ -16,9 +16,7 @@ public class GAMESTATES {
      *METHODS FOR SETTING AND RETURNING THE SCORES
      * FOR COMPUTER AND PLAYER
      */
-    public static Integer getcScore() {return cScore;
-    }
-
+    public static Integer getcScore() {return cScore; }
     public static Integer getpScore(){
         return pScore;
     }
@@ -26,7 +24,6 @@ public class GAMESTATES {
     public static void increaseCScore(){
         cScore++;
     }
-
     public static void increasePScore(){
         pScore++;
     }

@@ -2,9 +2,9 @@ import java.awt.*;
 
 public class Ball {
     //defines a variable for the WIDTH/HEIGHT of the ball. Since WIDTH = HEIGHT we will use diameter
-    final int diameter = 50;
+    final int diameter = 15;
     //defines a constant for the ball's speed
-    final int SPEED = 3;
+    final int SPEED = 6;
     //defines variables for the POSITION of the ball
     int x, y;
     double dx = SPEED, dy = SPEED;

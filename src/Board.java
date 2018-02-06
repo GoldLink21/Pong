@@ -40,14 +40,16 @@ public class Board extends JPanel implements ActionListener{
 
     public void gameReset(){
         ball.setPosition(getWidth()/2, getHeight()/2);
-        pPaddle.setPosition(EDGESPACE, getHeight()/2);
-        cPaddle.setPosition(getWidth() - EDGESPACE, getHeight()/2);
+        //pPaddle.setPosition(EDGESPACE, getHeight()/2);
+        //cPaddle.setPosition(getWidth() - EDGESPACE, getHeight()/2);
     }
 
     public void gameRestart(){
         gameReset();
         GAMESTATES.setCScore(0);
         GAMESTATES.setPScore(0);
+        pPaddle.setPosition(EDGESPACE, getHeight()/2);
+        cPaddle.setPosition(getWidth() - EDGESPACE, getHeight()/2);
     }
 
     //method called in the ActionListener which controls the game updates/rendering
@@ -87,20 +89,28 @@ public class Board extends JPanel implements ActionListener{
         //paints the ball object on the panel
         if(GAMESTATES.isPlay()){
             //Render Objects
+            g.setColor(Color.GREEN);
             ball.paint(g);
-            pPaddle.paint(g);
-            cPaddle.paint(g);
+
             //Render Goalline for Player
+            g.setColor(Color.PINK);
             g.drawLine(EDGESPACE, 0, EDGESPACE,getHeight());
+            g.setColor(Color.RED);
+            pPaddle.paint(g);
             //Render Goaline for Computer
+            g.setColor(Color.CYAN);
             g.drawLine(getWidth()-EDGESPACE, 0, getWidth()-EDGESPACE, getHeight());
+            g.setColor(Color.BLUE);
+            cPaddle.paint(g);
             //Center Circle Outline
+            g.setColor(Color.YELLOW);
             g.drawOval(getWidth()/2 - (EDGESPACE*2), getHeight()/2 - (EDGESPACE * 2), EDGESPACE*4, EDGESPACE*4);
             //Dashes down the center
             int numDashes = getHeight() / DECORSIZE;
             for(int i = 0; i < numDashes; i++){
                 g.drawLine(getWidth()/2, (i*DECORSIZE+DECORSIZE/4), getWidth()/2, (i*DECORSIZE)+(int)(DECORSIZE*(3.0/4)));
             }
+            g.setColor(Color.WHITE);
             //Print the score on the board
             g.setFont(new Font("Serif", Font.BOLD, 72));
             printSimpleString(GAMESTATES.getpScore().toString(), getWidth()/2, 0, DECORSIZE*2, g);
@@ -109,7 +119,7 @@ public class Board extends JPanel implements ActionListener{
         else if(GAMESTATES.isMenu()){
             //Renders the Menu Board
             g.setFont(new Font("Serif", Font.BOLD, 36));
-            printSimpleString("PONG", getWidth(), 0, (int)getHeight()/3, g);
+            printSimpleString("Pong", getWidth(), 0, (int)getHeight()/3, g);
             printSimpleString("Press *SPACE* to start.", getWidth(), 0, (int)(getHeight()*(2.0/3)), g);
 
         }
